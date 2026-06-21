@@ -20,7 +20,7 @@ tsconfig.json
 *.env
 *env.example
 .wrangler
-wrangler.toml
+*toml
 
 # Ignore specific files
 secrets.json

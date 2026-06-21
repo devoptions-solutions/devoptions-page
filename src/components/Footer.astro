@@ -1,6 +1,4 @@
 ---
-import Logo from "@assets/brand.svg";
-
 interface FooterLink {
   label: string;
   href: string;
@@ -24,7 +22,7 @@ const {
     { label: "Términos", href: "/terminos" },
     {
       label: "LinkedIn",
-      href: "https://linkedin.com/company/devoptions-labs",
+      href: "https://linkedin.com/company/devoptions-solutions",
       external: true,
     },
   ],
@@ -39,16 +37,12 @@ const year = new Date().getFullYear();
   <div class="site-footer-inner">
     <div class="site-footer-grid">
       <div class="site-footer-brand">
-        <a href="/" class="site-footer-logo">
-          <img
-            src={Logo.src}
-            alt="DevOptions"
-            width={Logo.width}
-            height={Logo.height}
-            loading="lazy"
-            decoding="async"
-            class="h-8 w-auto"
-          />
+        <a href="/" class="site-footer-logo" aria-label="DevOptions — inicio">
+          <span class="site-footer-wordmark">
+            <span class="site-footer-wordmark-dev">Dev</span><span
+              class="site-footer-wordmark-options">Options</span
+            >
+          </span>
         </a>
         <p class="site-footer-tagline">
           Desarrollo de software e implementaciones enfocadas en la seguridad de
@@ -175,6 +169,22 @@ const year = new Date().getFullYear();
     display: inline-block;
     opacity: 0.95;
     transition: opacity 0.15s ease;
+  }
+
+  .site-footer-wordmark {
+    font-family: var(--font-display);
+    font-size: var(--text-heading-h3);
+    line-height: var(--text-heading-h3--line-height);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+  }
+
+  .site-footer-wordmark-dev {
+    color: var(--color-brand-1);
+  }
+
+  .site-footer-wordmark-options {
+    color: var(--color-brand-3);
   }
 
   .site-footer-logo:hover {
