@@ -1,6 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import cloudflare from '@astrojs/cloudflare';
+import netlify from '@astrojs/netlify';
 
 import tailwindcss from '@tailwindcss/vite';
 
@@ -8,8 +8,11 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: "https://devoptions.solutions",
   output: "server",
-  adapter: cloudflare({
-    imageService: "compile",
+  adapter: netlify({
+    devFeatures: {
+      images: false,
+      environmentVariables: true,
+    },
   }),
   vite: {
     plugins: [tailwindcss()]

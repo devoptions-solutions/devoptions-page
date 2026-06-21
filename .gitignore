@@ -1,9 +1,11 @@
 # build output
 dist/
+.netlify/
 # generated types
 .astro/
 
-# wrangler local dev state
+deno.lock
+# wrangler local dev state (legacy)
 .wrangler/
 
 # dependencies
