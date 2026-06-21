@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import Logo from "@assets/brand.svg";
 
 interface FooterLink {
@@ -41,8 +40,8 @@ const year = new Date().getFullYear();
     <div class="site-footer-grid">
       <div class="site-footer-brand">
         <a href="/" class="site-footer-logo">
-          <Image
-            src={Logo}
+          <img
+            src={Logo.src}
             alt="DevOptions"
             width={Logo.width}
             height={Logo.height}

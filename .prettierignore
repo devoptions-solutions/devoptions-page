@@ -18,6 +18,9 @@ tsconfig.json
 .astro
 .vscode
 *.env
+*env.example
+.wrangler
+wrangler.toml
 
 # Ignore specific files
 secrets.json

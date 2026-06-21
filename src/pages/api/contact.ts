@@ -1,7 +1,21 @@
-// src/pages/api/contact.ts
 import type { APIRoute } from "astro";
 
 export const prerender = false;
+
+const BREVO_API_URL = "https://api.brevo.com/v3/smtp/email";
+
+function escapeHtml(value: string): string {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+function isValidEmail(value: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
 
 export const POST: APIRoute = async ({ request }) => {
   const form = await request.formData();
@@ -9,39 +23,65 @@ export const POST: APIRoute = async ({ request }) => {
   const name = String(form.get("name") ?? "").trim();
   const email = String(form.get("email") ?? "").trim();
   const message = String(form.get("message") ?? "").trim();
+  const company = String(form.get("company") ?? "").trim();
 
-  // Validación básica
   if (!name || !email || !message) {
     return new Response("Faltan campos", { status: 400 });
   }
 
-  const accessKey = import.meta.env.WEB3FORMS_KEY;
-  if (!accessKey) {
+  if (!isValidEmail(email)) {
+    return new Response("Email inválido", { status: 400 });
+  }
+
+  const apiKey = import.meta.env.BREVO_API_KEY;
+  const senderEmail = import.meta.env.BREVO_SENDER_EMAIL;
+  const toEmail = import.meta.env.BREVO_TO_EMAIL;
+
+  if (!apiKey || !senderEmail || !toEmail) {
     return new Response("Configuración incompleta", { status: 500 });
   }
 
-  const upstream = await fetch("https://api.web3forms.com/submit", {
+  const textContent = [
+    `Nombre: ${name}`,
+    `Email: ${email}`,
+    company ? `Empresa: ${company}` : null,
+    "",
+    message,
+  ]
+    .filter(Boolean)
+    .join("\n");
+
+  const htmlContent = [
+    `<p><strong>Nombre:</strong> ${escapeHtml(name)}</p>`,
+    `<p><strong>Email:</strong> ${escapeHtml(email)}</p>`,
+    company ? `<p><strong>Empresa:</strong> ${escapeHtml(company)}</p>` : null,
+    `<p>${escapeHtml(message).replace(/\n/g, "<br>")}</p>`,
+  ]
+    .filter(Boolean)
+    .join("");
+
+  const upstream = await fetch(BREVO_API_URL, {
     method: "POST",
-    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    headers: {
+      "api-key": apiKey,
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
     body: JSON.stringify({
-      access_key: accessKey,
-      name,
-      email,
-      message,
-      company: form.get("company"),
-      subject: "Nuevo contacto — DevOptions",
+      sender: { name: "DevOptions", email: senderEmail },
+      to: [{ email: toEmail, name: "DevOptions" }],
+      replyTo: { email, name },
+      subject: `Nuevo contacto — ${name}`,
+      textContent,
+      htmlContent,
     }),
   });
 
-  const result = await upstream.json();
-
-  if (!result.success) {
+  if (!upstream.ok) {
+    const errorBody = await upstream.text();
+    console.error("Brevo error:", upstream.status, errorBody);
     return new Response("No se pudo enviar", { status: 502 });
   }
 
-  // Opción A: redirect clásico tras enviar formulario HTML
-  // return Response.redirect(new URL("/?contacto=ok#contacto", request.url), 303);
-
-  // Opción B: respuesta JSON (si usas fetch desde JS en el cliente)
-  return Response.json({ ok: true });
+  return Response.redirect(new URL("/?contacto=ok#contacto", request.url), 303);
 };

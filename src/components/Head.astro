@@ -1,27 +1,37 @@
 ---
+import { getImage } from "astro:assets";
 import Favicon from "@public/favicon.ico";
+import banner from "@assets/banner.webp";
 
-const { title = "DevOptions Solutions", ...props } = Astro.props;
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "DevOptions Solutions",
+  description = "DevOptions — desarrollo de software e implementaciones enfocadas en la seguridad de datos.",
+} = Astro.props;
+
+const ogImage = await getImage({ src: banner, width: 1200, format: "webp" });
+const ogImageUrl = new URL(ogImage.src, Astro.site).href;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
 <link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="canonical" href={canonicalUrl} />
 <title>{title}</title>
-<meta
-  name="description"
-  content="DevOptions — desarrollo de software e implementaciones enfocadas en la seguridad de datos."
-/>
+<meta name="description" content={description} />
 
-<!-- Web analytics -->
-
-<!-- Open Graph tags -->
-<meta property="og:title" content="DevOptions Solutions" />
+<!-- Open Graph -->
+<meta property="og:title" content={title} />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://devoptions.solutions" />
-<meta property="og:description" content="Welcome to DevOptions Solutions site!" />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImageUrl} />
 <meta
-  property="og:image"
-  content="https://devoptions.solutions/_astro/banner.wzGx9Qrz.webp"
+  property="og:image:alt"
+  content="DevOptions — desarrollo seguro de software"
 />
-<meta property="og:image:alt" content="" />
 
 <Favicon />
