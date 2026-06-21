@@ -1,0 +1,27 @@
+---
+import Favicon from "@public/favicon.ico";
+
+const { title = "DevOptions Solutions", ...props } = Astro.props;
+---
+
+<link rel="sitemap" href="/sitemap-index.xml" />
+<title>{title}</title>
+<meta
+  name="description"
+  content="DevOptions — desarrollo de software e implementaciones enfocadas en la seguridad de datos."
+/>
+
+<!-- Web analytics -->
+
+<!-- Open Graph tags -->
+<meta property="og:title" content="DevOptions Solutions" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://devoptions.solutions" />
+<meta property="og:description" content="Welcome to DevOptions Solutions site!" />
+<meta
+  property="og:image"
+  content="https://devoptions.solutions/_astro/banner.wzGx9Qrz.webp"
+/>
+<meta property="og:image:alt" content="" />
+
+<Favicon />

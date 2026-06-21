@@ -1,17 +1,124 @@
 ---
+export const prerender = true;
 
+import Badge from "@components/Badge.astro";
+import Card from "@components/Card.astro";
+import ContactForm from "@components/ContactForm.astro";
+import CtaBanner from "@components/CtaBanner.astro";
+import Footer from "@components/Footer.astro";
+import Hero from "@components/Hero.astro";
+import MainLayout from "@layouts/MainLayout.astro";
+import Navbar from "@components/Navbar.astro";
+import RocketIcon from "@assets/rocket.svg";
+import SecurityIcon from "@assets/security.svg";
+import ServerIcon from "@assets/server.svg";
+
+const services = [
+  {
+    title: "Desarrollo seguro",
+    description:
+      "Aplicaciones web y APIs con prácticas de seguridad desde el código.",
+    icon: RocketIcon,
+    iconBg: "bg-brand-4/20",
+  },
+  {
+    title: "Auditoría de datos",
+    description:
+      "Revisión de vulnerabilidades, accesos y cumplimiento normativo.",
+    icon: SecurityIcon,
+    iconBg: "bg-brand-1/20",
+  },
+  {
+    title: "Implementación",
+    description: "Despliegue, integración y hardening de infraestructura.",
+    icon: ServerIcon,
+    iconBg: "bg-brand-1/20",
+  },
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout title="DevOptions — Desarrollo seguro de software">
+  <Navbar />
+
+  <Hero
+    title="Protegemos tus datos en cada implementación"
+    description="DevOptions desarrolla e implementa soluciones de software con enfoque en seguridad de datos, cumplimiento normativo y arquitectura robusta."
+    primaryCta={{ label: "Conocer servicios", href: "#servicios" }}
+    secondaryCta={{ label: "Hablar con un experto", href: "#contacto" }}
+  />
+
+  <section id="servicios" class="bg-surface py-20 lg:py-28">
+    <div class="mx-auto max-w-6xl px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center">
+        <Badge variant="brand">Servicios</Badge>
+        <h2 class="mt-4 text-heading-h1 font-bold text-text-primary">
+          Soluciones enfocadas en seguridad
+        </h2>
+        <p class="mt-4 text-body-md text-text-secondary">
+          Desde el diseño hasta la implementación, priorizamos la protección de
+          tu información.
+        </p>
+      </div>
+
+      <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+        {
+          services.map((service) => (
+            <Card
+              title={service.title}
+              description={service.description}
+              iconBg={service.iconBg}
+            >
+              <img
+                slot="icon"
+                src={service.icon.src}
+                alt=""
+                width="24"
+                height="24"
+                loading="lazy"
+                decoding="async"
+              />
+            </Card>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="seguridad" class="py-20 lg:py-28">
+    <div class="mx-auto max-w-6xl px-6 text-center lg:px-8">
+      <h2 class="text-heading-h1 font-bold text-text-primary">
+        ¿Por qué DevOptions?
+      </h2>
+      <dl class="mt-12 grid gap-10 sm:grid-cols-3">
+        <div>
+          <dt class="text-display-lg font-bold text-primary">100%</dt>
+          <dd class="mt-2 text-body-sm text-text-secondary">
+            Enfoque en seguridad
+          </dd>
+        </div>
+        <div>
+          <dt class="text-display-lg font-bold text-primary">24/7</dt>
+          <dd class="mt-2 text-body-sm text-text-secondary">
+            Monitoreo y soporte
+          </dd>
+        </div>
+        <div>
+          <dt class="text-display-lg font-bold text-primary">GDPR</dt>
+          <dd class="mt-2 text-body-sm text-text-secondary">
+            Cumplimiento normativo
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <CtaBanner
+    title="¿Listo para proteger tu próximo proyecto?"
+    description="Agenda una consulta gratuita y descubre cómo podemos ayudarte."
+    cta={{ label: "Contactar ahora", href: "#contacto" }}
+  />
+
+  <ContactForm />
+
+  <Footer />
+</MainLayout>

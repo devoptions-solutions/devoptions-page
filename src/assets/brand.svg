@@ -2,13 +2,16 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="48"
-   height="48"
-   viewBox="0 0 48 48"
+   width="814.22205"
+   height="258.16876"
+   viewBox="0 0 814.22205 258.16876"
    version="1.1"
    id="svg1"
    inkscape:version="1.4.4 (1:1.4.4+202605061435+dcaf3e7d9e)"
-   sodipodi:docname="logo-only3.svg"
+   sodipodi:docname="brand2.svg"
+   inkscape:export-filename="brand2-1.svg"
+   inkscape:export-xdpi="28.675325"
+   inkscape:export-ydpi="28.675325"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -23,49 +26,35 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#505050"
      inkscape:document-units="px"
-     showgrid="true"
-     inkscape:zoom="12.114583"
-     inkscape:cx="35.16423"
-     inkscape:cy="20.842648"
+     inkscape:zoom="1.1073171"
+     inkscape:cx="534.62555"
+     inkscape:cy="276.79515"
      inkscape:window-width="2503"
      inkscape:window-height="1371"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1">
-    <inkscape:grid
-       id="grid1"
-       units="px"
-       originx="0"
-       originy="0"
-       spacingx="1"
-       spacingy="1"
-       empcolor="#0099e5"
-       empopacity="0.30196078"
-       color="#0099e5"
-       opacity="0.14901961"
-       empspacing="5"
-       enabled="true"
-       visible="true" />
+    <inkscape:page
+       x="0"
+       y="0"
+       width="814.22205"
+       height="258.16876"
+       id="page2"
+       margin="0"
+       bleed="0" />
   </sodipodi:namedview>
   <defs
      id="defs1" />
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1">
-    <rect
-       style="display:inline;fill:#ffffff;fill-opacity:1;stroke-width:0.0467747"
-       id="rect7"
-       width="48.026711"
-       height="47.890179"
-       x="0.038839132"
-       y="0.060804777"
-       sodipodi:insensitive="true" />
+     id="layer1"
+     transform="translate(-4.1497817,-88.497796)">
     <g
        id="g4"
        style="display:inline"
-       transform="matrix(0.14701182,0,0,0.14701182,-1.4867001,-48.240523)">
+       transform="matrix(0.82414399,0,0,0.82414399,-25.225621,-186.70252)">
       <path
          style="fill:#5f1bf2;fill-opacity:1"
          d="m 35.879622,477.4411 -0.220121,-64.49527 137.575239,-79.02322 131.41186,76.38178 -26.85468,15.62854 -104.7773,-60.86328 -110.940673,63.50473 0.660361,33.89854 z"
@@ -87,10 +76,21 @@
          cy="422.11902"
          r="11.984942" />
     </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:94.5021px;font-family:'Bespoke Slab';-inkscape-font-specification:'Bespoke Slab Ultra-Bold';writing-mode:lr-tb;direction:ltr;display:inline;fill:#5f1bf2;fill-opacity:1;stroke-width:0.824144"
+       x="239.94632"
+       y="248.61758"
+       id="text6"><tspan
+         sodipodi:role="line"
+         id="tspan6"
+         x="239.94632"
+         y="248.61758"
+         style="stroke-width:0.824144">Dev</tspan></text>
     <g
        id="g6"
        style="display:inline"
-       transform="matrix(0.14701182,0,0,0.14701182,-1.4867001,-48.240523)">
+       transform="matrix(0.82414399,0,0,0.82414399,-25.225621,-186.70252)">
       <path
          style="fill:#076df2;fill-opacity:1"
          d="m 216.35157,498.77598 66.53978,-37.74479 0.54477,121.63939 26.53809,-15.72051 -0.0778,-143.1189 -95.95737,54.16572 z"
@@ -124,5 +124,16 @@
          cx="193"
          r="11.875" />
     </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:94.5021px;font-family:'Bespoke Slab';-inkscape-font-specification:'Bespoke Slab Ultra-Bold';writing-mode:lr-tb;direction:ltr;display:inline;fill:#076df2;fill-opacity:1;stroke-width:0.824144"
+       x="427.79434"
+       y="248.42615"
+       id="text7"><tspan
+         sodipodi:role="line"
+         id="tspan7"
+         x="427.79434"
+         y="248.42615"
+         style="stroke-width:0.824144">Options</tspan></text>
   </g>
 </svg>

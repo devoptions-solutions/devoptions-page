@@ -1,0 +1,186 @@
+---
+import Badge from "@components/Badge.astro";
+import Button from "@components/Button.astro";
+
+interface Cta {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  badge?: string;
+  title: string;
+  description: string;
+  primaryCta: Cta;
+  secondaryCta?: Cta;
+}
+
+const {
+  badge = "Desarrollo seguro de software",
+  title,
+  description,
+  primaryCta,
+  secondaryCta,
+} = Astro.props;
+---
+
+<section class="hero relative overflow-hidden text-white">
+  <!-- Fondo -->
+  <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+    <div class="absolute inset-0 bg-neutral-900"></div>
+    <div
+      class="absolute inset-0 bg-linear-to-br from-brand-2/50 via-neutral-900 to-brand-3/40"
+    >
+    </div>
+    <div
+      class="absolute -top-32 right-0 h-[28rem] w-[28rem] rounded-full bg-brand-1/35 blur-3xl"
+    >
+    </div>
+    <div
+      class="absolute -bottom-24 -left-24 h-96 w-96 rounded-full bg-brand-3/30 blur-3xl"
+    >
+    </div>
+    <div
+      class="absolute top-1/2 left-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-2/20 blur-3xl"
+    >
+    </div>
+    <div class="hero-grid absolute inset-0 opacity-[0.35]"></div>
+    <div
+      class="absolute inset-0 bg-linear-to-t from-neutral-900 via-transparent to-neutral-900/60"
+    >
+    </div>
+  </div>
+
+  <div
+    class="relative mx-auto grid max-w-6xl items-center gap-12 px-6 py-20 lg:grid-cols-2 lg:px-8 lg:py-28"
+  >
+    <div>
+      <!-- <Badge
+        variant="security"
+        class="border border-white/15 bg-white/10 text-brand-4 backdrop-blur-md"
+      >
+        {badge}
+      </Badge> -->
+
+      <h1
+        class="mt-6 text-display-xl font-bold tracking-tight text-balance text-white"
+      >
+        {title}
+      </h1>
+
+      <p class="mt-6 max-w-xl text-body-lg text-white/75">
+        {description}
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-4">
+        <Button
+          href={primaryCta.href}
+          class="shadow-lg shadow-brand-2/30 hover:shadow-brand-3/40"
+        >
+          {primaryCta.label}
+        </Button>
+        {
+          secondaryCta && (
+            <Button
+              variant="secondary"
+              href={secondaryCta.href}
+              class="border-white/20 bg-white/5 text-white backdrop-blur-sm hover:border-white/30 hover:bg-white/10"
+            >
+              {secondaryCta.label}
+            </Button>
+          )
+        }
+      </div>
+    </div>
+
+    <!-- Panel visual -->
+    <div class="relative lg:pl-4" aria-hidden="true">
+      <div
+        class="absolute -inset-4 rounded-3xl bg-linear-to-br from-brand-1/40 via-brand-2/20 to-brand-3/40 blur-2xl"
+      >
+      </div>
+
+      <div
+        class="relative overflow-hidden rounded-2xl border border-white/15 bg-white/5 p-6 shadow-2xl shadow-brand-2/20 backdrop-blur-xl"
+      >
+        <div
+          class="absolute top-0 right-0 h-32 w-32 rounded-full bg-brand-4/20 blur-2xl"
+        >
+        </div>
+
+        <div
+          class="relative flex items-center gap-2 border-b border-white/10 pb-4"
+        >
+          <span class="size-2.5 rounded-full bg-error/80"></span>
+          <span class="size-2.5 rounded-full bg-warning/80"></span>
+          <span class="size-2.5 rounded-full bg-success/80"></span>
+          <span class="ml-2 text-caption text-white/40">devoptions.app</span>
+        </div>
+
+        <div class="relative mt-5 space-y-3">
+          <div class="h-2.5 w-4/5 rounded-full bg-white/20"></div>
+          <div class="h-2.5 w-3/5 rounded-full bg-white/10"></div>
+          <div class="h-2.5 w-2/3 rounded-full bg-white/10"></div>
+        </div>
+
+        <div
+          class="relative mt-6 flex items-center gap-3 rounded-xl border border-success/25 bg-success/10 p-4"
+        >
+          <div
+            class="flex size-10 shrink-0 items-center justify-center rounded-lg bg-success/20"
+          >
+            <svg
+              class="size-5 text-success"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              <path d="m9 12 2 2 4-4"></path>
+            </svg>
+          </div>
+          <div>
+            <p class="text-label-md font-bold text-white">Datos protegidos</p>
+            <p class="text-caption text-white/55">
+              Cifrado activo · Cumplimiento GDPR
+            </p>
+          </div>
+        </div>
+
+        <div class="relative mt-4 grid grid-cols-2 gap-3">
+          <div class="rounded-lg border border-white/10 bg-white/5 p-3">
+            <p class="text-caption text-white/45">Uptime</p>
+            <p class="text-heading-h3 font-bold text-brand-4">99.9%</p>
+          </div>
+          <div class="rounded-lg border border-white/10 bg-white/5 p-3">
+            <p class="text-caption text-white/45">Auditorías</p>
+            <p class="text-heading-h3 font-bold text-brand-1">24/7</p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="absolute -bottom-4 -left-2 rounded-xl border border-white/15 bg-white/10 px-4 py-2.5 shadow-lg backdrop-blur-md lg:-left-6"
+      >
+        <p class="text-caption font-bold text-brand-4">Seguridad por diseño</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-grid {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(
+      ellipse 80% 70% at 50% 50%,
+      black 20%,
+      transparent 100%
+    );
+  }
+</style>

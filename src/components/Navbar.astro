@@ -1,0 +1,206 @@
+---
+import Button from "@components/Button.astro";
+import { Image } from "astro:assets";
+import Logo from "@assets/brand.svg";
+
+interface NavLink {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  links?: NavLink[];
+  ctaLabel?: string;
+  ctaHref?: string;
+}
+
+const {
+  links = [
+    { label: "Servicios", href: "#servicios" },
+    { label: "Seguridad", href: "#seguridad" },
+    { label: "Nosotros", href: "#nosotros" },
+    { label: "Contacto", href: "#contacto" },
+  ],
+  ctaLabel = "Agendar consulta",
+  ctaHref = "#contacto",
+} = Astro.props;
+---
+
+<header
+  class="navbar sticky top-0 z-50 border-b border-border/40 bg-background/75 backdrop-blur-xl"
+>
+  <nav
+    class="mx-auto flex h-16 max-w-6xl items-center justify-between gap-8 px-6 lg:h-[4.25rem] lg:px-8"
+    aria-label="Principal"
+  >
+    <a href="/" class="navbar-logo shrink-0">
+      <Image
+        src={Logo}
+        alt="DevOptions"
+        width={Logo.width}
+        height={Logo.height}
+        loading="lazy"
+        decoding="async"
+        class="h-7 w-auto lg:h-8"
+      />
+    </a>
+
+    <ul class="hidden items-center gap-1 md:flex">
+      {
+        links.map((link) => (
+          <li>
+            <a href={link.href} class="nav-link">
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <Button
+      href={ctaHref}
+      class="nav-cta hidden px-4 py-2 text-body-sm md:inline-flex"
+    >
+      {ctaLabel}
+    </Button>
+
+    <details class="nav-mobile relative md:hidden">
+      <summary class="nav-mobile-trigger" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+      </summary>
+      <div class="nav-mobile-panel">
+        <ul>
+          {
+            links.map((link) => (
+              <li>
+                <a href={link.href}>{link.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+        <Button
+          href={ctaHref}
+          class="mt-3 w-full justify-center py-2.5 text-body-sm"
+        >
+          {ctaLabel}
+        </Button>
+      </div>
+    </details>
+  </nav>
+</header>
+
+<style>
+  .navbar-logo {
+    display: block;
+    opacity: 0.95;
+    transition: opacity 0.15s ease;
+  }
+
+  .navbar-logo:hover {
+    opacity: 1;
+  }
+
+  .nav-link {
+    display: block;
+    padding: 0.375rem 0.875rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: var(--color-text-secondary);
+    border-radius: 0.375rem;
+    transition: color 0.15s ease;
+  }
+
+  .nav-link:hover,
+  .nav-link:focus-visible {
+    color: var(--color-brand-2);
+    outline: none;
+  }
+
+  .nav-cta {
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  .nav-mobile > summary {
+    list-style: none;
+    cursor: pointer;
+  }
+
+  .nav-mobile > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .nav-mobile-trigger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 2rem;
+    height: 2rem;
+    padding: 2px;
+  }
+
+  .nav-mobile-trigger span {
+    display: block;
+    height: 1.5px;
+    width: 100%;
+    border-radius: 9999px;
+    background: var(--color-text-primary);
+    opacity: 0.55;
+    transition: opacity 0.15s ease;
+  }
+
+  .nav-mobile-trigger:hover span {
+    opacity: 0.85;
+  }
+
+  .nav-mobile[open] .nav-mobile-trigger span:first-child {
+    transform: translateY(3.75px) rotate(45deg);
+  }
+
+  .nav-mobile[open] .nav-mobile-trigger span:last-child {
+    transform: translateY(-3.75px) rotate(-45deg);
+  }
+
+  .nav-mobile[open] .nav-mobile-trigger span {
+    transition: transform 0.2s ease;
+  }
+
+  .nav-mobile-panel {
+    position: absolute;
+    top: calc(100% + 0.75rem);
+    right: 0;
+    width: 13rem;
+    padding: 0.5rem;
+    border-radius: 0.625rem;
+    border: 1px solid var(--color-border);
+    background: var(--color-background);
+    box-shadow: 0 12px 32px rgb(26 26 46 / 0.08);
+  }
+
+  .nav-mobile-panel ul {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-mobile-panel a {
+    display: block;
+    padding: 0.5rem 0.625rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    border-radius: 0.375rem;
+    transition:
+      color 0.15s ease,
+      background-color 0.15s ease;
+  }
+
+  .nav-mobile-panel a:hover,
+  .nav-mobile-panel a:focus-visible {
+    color: var(--color-text-primary);
+    background: var(--color-surface);
+    outline: none;
+  }
+</style>

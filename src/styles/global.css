@@ -1,0 +1,29 @@
+@import "./bespoke-sans.css";
+@import "./bespoke-slab.css";
+@import "tailwindcss";
+@import "./tokens.css";
+
+@layer base {
+  body {
+    @apply bg-background font-sans text-body-md text-text-primary antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display;
+  }
+}
+
+@layer utilities {
+  .text-display-xl,
+  .text-display-lg,
+  .text-heading-h1,
+  .text-heading-h2,
+  .text-heading-h3 {
+    font-family: var(--font-display);
+  }
+}

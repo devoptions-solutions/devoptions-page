@@ -1,0 +1,31 @@
+---
+type Variant = "brand" | "security" | "development" | "success" | "neutral";
+
+interface Props {
+  variant?: Variant;
+  class?: string;
+}
+
+const { variant = "brand", class: className = "" } = Astro.props;
+
+const variants: Record<Variant, string> = {
+  brand: "bg-brand-1/20 text-brand-2",
+  security: "bg-brand-1/20 text-brand-2",
+  development: "bg-brand-4/20 text-brand-3",
+  success: "bg-success/15 text-success",
+  neutral: "bg-surface text-text-secondary",
+};
+
+const classes = [
+  "inline-flex items-center rounded-full px-3 py-1",
+  "text-caption font-bold",
+  variants[variant],
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<span class={classes}>
+  <slot />
+</span>

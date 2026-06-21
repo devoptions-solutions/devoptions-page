@@ -1,0 +1,19 @@
+/**
+ * Bespoke Slab — Indian Type Foundry / Fontshare
+ * https://www.fontshare.com/fonts/bespoke-slab
+ */
+@font-face {
+  font-family: "Bespoke Slab";
+  src: url("../assets/fonts/BespokeSlab-Variable.woff2") format("woff2");
+  font-weight: 300 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bespoke Slab";
+  src: url("../assets/fonts/BespokeSlab-VariableItalic.woff2") format("woff2");
+  font-weight: 300 800;
+  font-style: italic;
+  font-display: swap;
+}

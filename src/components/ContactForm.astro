@@ -1,0 +1,220 @@
+---
+import Badge from "@components/Badge.astro";
+import Button from "@components/Button.astro";
+import Form from "@components/Form.astro";
+import Input from "@components/Input.astro";
+
+interface Props {
+  action?: string;
+}
+
+const { action = "/api/contact" } = Astro.props;
+---
+
+<section id="contacto" class="contact-section py-20 lg:py-28">
+  <div class="mx-auto max-w-6xl px-6 lg:px-8">
+    <div class="contact-grid">
+      <div class="contact-copy">
+        <Badge variant="brand">Contacto</Badge>
+        <h2 class="contact-title">Hablemos de tu proyecto</h2>
+        <p class="contact-description">
+          Cuéntanos qué necesitas. Revisamos cada solicitud con atención y te
+          respondemos en menos de 48 horas hábiles.
+        </p>
+
+        <ul class="contact-points" role="list">
+          <li>
+            <span class="contact-point-icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </span>
+            <span
+              >Datos tratados con criterios de seguridad y confidencialidad</span
+            >
+          </li>
+          <li>
+            <span class="contact-point-icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <path d="m22 4-10 10-3-3"></path>
+              </svg>
+            </span>
+            <span>Consulta inicial sin compromiso</span>
+          </li>
+          <li>
+            <span class="contact-point-icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                ></path>
+              </svg>
+            </span>
+            <span>Respuesta personalizada, no automatizada</span>
+          </li>
+        </ul>
+      </div>
+
+      <Form
+        action={action}
+        method="post"
+        name="contact"
+        title="Envíanos un mensaje"
+        description="Los campos marcados son obligatorios."
+        class="contact-form"
+      >
+        <div class="form-row">
+          <Input
+            label="Nombre"
+            name="name"
+            placeholder="Tu nombre"
+            required
+            autocomplete="name"
+          />
+          <Input
+            label="Email"
+            name="email"
+            type="email"
+            placeholder="tu@email.com"
+            autocomplete="email"
+            required
+          />
+        </div>
+        <Input
+          label="Empresa"
+          name="company"
+          placeholder="Nombre de tu empresa (opcional)"
+          autocomplete="organization"
+        />
+        <Input
+          label="Mensaje"
+          name="message"
+          type="textarea"
+          placeholder="Cuéntanos sobre tu proyecto, plazos y objetivos..."
+          rows={5}
+          required
+        />
+
+        <p class="contact-privacy">
+          Al enviar este formulario aceptas que usemos tus datos solo para
+          responder a tu consulta.
+        </p>
+
+        <div slot="actions">
+          <Button type="submit" class="w-full sm:w-auto">
+            Enviar mensaje
+          </Button>
+        </div>
+      </Form>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-grid {
+    display: grid;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  @media (min-width: 1024px) {
+    .contact-grid {
+      grid-template-columns: 1fr 1.1fr;
+      gap: 4rem;
+    }
+  }
+
+  .contact-title {
+    font-family: var(--font-display);
+    margin-top: 1rem;
+    font-size: var(--text-heading-h1);
+    line-height: var(--text-heading-h1--line-height);
+    letter-spacing: var(--text-heading-h1--letter-spacing);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    text-wrap: balance;
+  }
+
+  .contact-description {
+    margin-top: 1rem;
+    max-width: 28rem;
+    font-size: var(--text-body-md);
+    line-height: var(--text-body-md--line-height);
+    color: var(--color-text-secondary);
+  }
+
+  .contact-points {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-points li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: var(--text-body-sm);
+    line-height: var(--text-body-sm--line-height);
+    color: var(--color-text-secondary);
+  }
+
+  .contact-point-icon {
+    display: flex;
+    margin-top: 0.125rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: var(--radius-md);
+    background: rgb(95 27 242 / 0.08);
+    color: var(--color-brand-2);
+  }
+
+  .contact-point-icon svg {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+
+  .contact-form {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-form::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      var(--color-brand-2),
+      var(--color-brand-3),
+      var(--color-brand-4)
+    );
+  }
+
+  .contact-privacy {
+    font-size: var(--text-caption);
+    line-height: var(--text-caption--line-height);
+    color: var(--color-text-secondary);
+  }
+</style>

@@ -1,0 +1,76 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  iconBg?: string;
+  class?: string;
+}
+
+const {
+  title,
+  description,
+  iconBg = "bg-brand-1/20",
+  class: className = "",
+} = Astro.props;
+
+const classes = [
+  "group rounded-lg border border-border bg-background p-6",
+  "shadow-[0_4px_24px_rgba(26,26,46,0.06)]",
+  "transition-[border-color,box-shadow,transform] duration-200",
+  "hover:border-brand-2/20 hover:shadow-[0_8px_32px_rgba(95,27,242,0.1)]",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+
+const iconClasses = ["card-icon", iconBg].filter(Boolean).join(" ");
+---
+
+<article class={classes}>
+  {
+    Astro.slots.has("icon") && (
+      <div class={iconClasses}>
+        <slot name="icon" />
+      </div>
+    )
+  }
+  <h3 class="text-heading-h3 font-bold text-text-primary">{title}</h3>
+  {
+    description && (
+      <p class="mt-2 text-body-sm leading-relaxed text-text-secondary">
+        {description}
+      </p>
+    )
+  }
+  {
+    Astro.slots.has("default") && (
+      <div class="mt-4">
+        <slot />
+      </div>
+    )
+  }
+</article>
+
+<style>
+  .card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1rem;
+    border-radius: var(--radius-md);
+    transition: transform 0.2s ease;
+  }
+
+  .group:hover .card-icon {
+    transform: scale(1.05);
+  }
+
+  .card-icon :global(img),
+  .card-icon :global(svg) {
+    width: 1.5rem;
+    height: 1.5rem;
+    object-fit: contain;
+  }
+</style>

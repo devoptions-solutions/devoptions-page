@@ -1,0 +1,31 @@
+# Ignore build artifacts and cache
+dist/
+build/
+coverage/
+astro.config.mjs
+
+public
+src/assets
+src/styles
+node_modules
+
+# Ignore specific dependency configurations
+package-lock.json
+package.json
+pnpm-lock.yaml
+tsconfig.json
+.pnpm-store
+.astro
+.vscode
+*.env
+
+# Ignore specific files
+secrets.json
+
+*.md
+*.yaml
+*.yml
+.prettierrc
+.prettierignore
+.gitignore
+
