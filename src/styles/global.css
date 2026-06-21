@@ -4,8 +4,13 @@
 @import "./tokens.css";
 
 @layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
   body {
-    @apply bg-background font-sans text-body-md text-text-primary antialiased;
+    @apply overflow-x-hidden bg-background font-sans text-body-md text-text-primary antialiased;
   }
 
   h1,
@@ -25,5 +30,28 @@
   .text-heading-h2,
   .text-heading-h3 {
     font-family: var(--font-display);
+  }
+
+  /* Escala tipográfica mobile-first */
+  @media (max-width: 639px) {
+    .text-display-xl {
+      font-size: 1.875rem;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .text-display-lg {
+      font-size: 1.75rem;
+      line-height: 1.15;
+    }
+
+    .text-heading-h1 {
+      font-size: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .text-heading-h2 {
+      font-size: 1.25rem;
+    }
   }
 }

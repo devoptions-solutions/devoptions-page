@@ -11,8 +11,8 @@ interface Props {
 const { action = "/api/contact" } = Astro.props;
 ---
 
-<section id="contacto" class="contact-section py-20 lg:py-28">
-  <div class="mx-auto max-w-6xl px-6 lg:px-8">
+<section id="contacto" class="contact-section py-14 sm:py-20 lg:py-28">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
     <div class="contact-grid">
       <div class="contact-copy">
         <Badge variant="brand">Contacto</Badge>
@@ -128,8 +128,14 @@ const { action = "/api/contact" } = Astro.props;
 <style>
   .contact-grid {
     display: grid;
-    gap: 3rem;
+    gap: 2rem;
     align-items: start;
+  }
+
+  @media (min-width: 640px) {
+    .contact-grid {
+      gap: 3rem;
+    }
   }
 
   @media (min-width: 1024px) {
