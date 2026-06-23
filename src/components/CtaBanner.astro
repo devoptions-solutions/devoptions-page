@@ -1,7 +1,7 @@
 ---
 import Button from "@components/Button.astro";
 import { Image } from "astro:assets";
-import banner from "@assets/banner.webp";
+import Banner from "@assets/banner.webp";
 
 interface Cta {
   label: string;
@@ -19,7 +19,7 @@ const { title, description, cta } = Astro.props;
 
 <section class="cta-banner relative overflow-hidden">
   <Image
-    src={banner}
+    src={Banner}
     alt=""
     widths={[768, 1024, 1536, 1920]}
     sizes="100vw"
@@ -79,9 +79,9 @@ const { title, description, cta } = Astro.props;
     z-index: -1;
     background: linear-gradient(
       105deg,
-      rgb(36 16 38 / 0.92) 0%,
-      rgb(75 19 79 / 0.78) 45%,
-      rgb(155 75 160 / 0.7) 100%
+      rgb(47 79 79 / 0.92) 0%,
+      rgb(0 71 171 / 0.82) 45%,
+      rgb(255 99 71 / 0.72) 100%
     );
   }
 

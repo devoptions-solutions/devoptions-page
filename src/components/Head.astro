@@ -1,7 +1,7 @@
 ---
 import { getImage } from "astro:assets";
 import Favicon from "@public/favicon.ico";
-import banner from "@assets/banner.webp";
+import Banner from "@assets/banner.webp";
 
 interface Props {
   title?: string;
@@ -13,7 +13,7 @@ const {
   description = "DevOptions — desarrollo de software e implementaciones enfocadas en la seguridad de datos.",
 } = Astro.props;
 
-const ogImage = await getImage({ src: banner, width: 1200, format: "webp" });
+const ogImage = await getImage({ src: Banner, width: 1200, format: "webp" });
 const ogImageUrl = new URL(ogImage.src, Astro.site).href;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 ---
