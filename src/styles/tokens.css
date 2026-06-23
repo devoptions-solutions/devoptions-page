@@ -6,7 +6,8 @@
  *   60% Blanco (#ffffff) — neutro dominante (fondos/superficies)
  *   30% Cobalto (#0047ab) — color de marca/primario
  *   10% Tomate (#ff6347) — acento
- *   Apoyo: azul claro #add8e6, slate #2f4f4f (texto)
+ *   Apoyo: azul claro #add8e6
+ *   Oscuro/neutros derivados del cobalto (azul marino), sin slate
  * @see paleta-colores.txt
  */
 @theme {
@@ -27,18 +28,18 @@
   --color-background: #ffffff; /* 60% — blanco */
   --color-surface: #eef3f9; /* 60% — superficie azul muy clara */
   --color-border: #d6e0ec;
-  --color-text-primary: #2f4f4f;
-  --color-text-secondary: #5e7373;
+  --color-text-primary: #0f2240;
+  --color-text-secondary: #4a5b73;
   --color-success: #10b981;
   --color-warning: #f59e0b;
   --color-error: #ef4444;
 
-  /* Neutros (slate frío) */
+  /* Neutros (azul marino derivados del cobalto) */
   --color-neutral-100: #eef3f9;
-  --color-neutral-300: #c9d6e2;
-  --color-neutral-500: #6b7f88;
-  --color-neutral-700: #3f5454;
-  --color-neutral-900: #2f4f4f;
+  --color-neutral-300: #c4cfdd;
+  --color-neutral-500: #5b6b85;
+  --color-neutral-700: #243650;
+  --color-neutral-900: #0f2240;
 
   /* Espaciado */
   --spacing-1: 0.25rem;
