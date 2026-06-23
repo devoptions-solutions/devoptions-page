@@ -34,7 +34,7 @@ const {
       aria-label="Principal"
     >
       <a href="/" class="navbar-logo">
-        <img
+        <!-- <img
           src={Logo.src}
           alt="DevOptions"
           width={Logo.width}
@@ -42,7 +42,7 @@ const {
           loading="lazy"
           decoding="async"
           class="h-7 w-auto lg:h-8"
-        />
+        /> -->
         <span class="site-nav-wordmark">
           <span class="site-nav-wordmark-dev">Dev</span><span
             class="site-nav-wordmark-options">Options</span
@@ -220,17 +220,19 @@ const {
     display: inline-flex;
     align-items: baseline;
     font-family: var(--font-display);
-    font-size: var(--text-heading-h3);
+    font-size: var(--text-heading-h1);
     line-height: 1;
     font-weight: 900;
     letter-spacing: -0.02em;
   }
   .site-nav-wordmark-dev {
-    color: var(--color-brand-2);
+    color: var(--color-brand-4);
+    background-color: var(--color-brand-1);
   }
 
   .site-nav-wordmark-options {
-    color: var(--color-brand-4);
+    color: var(--color-brand-1);
+    background-color: var(--color-brand-4);
   }
 
   .nav-link {
