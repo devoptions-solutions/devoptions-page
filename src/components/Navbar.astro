@@ -1,6 +1,6 @@
 ---
 import Button from "@components/Button.astro";
-import Logo from "@assets/brand.svg";
+import Logo from "@assets/brand-logo.svg";
 
 interface NavLink {
   label: string;
@@ -33,7 +33,7 @@ const {
       class="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:gap-8 sm:px-6 lg:h-[4.25rem] lg:px-8"
       aria-label="Principal"
     >
-      <a href="/" class="navbar-logo shrink-0">
+      <a href="/" class="navbar-logo">
         <img
           src={Logo.src}
           alt="DevOptions"
@@ -43,6 +43,11 @@ const {
           decoding="async"
           class="h-7 w-auto lg:h-8"
         />
+        <span class="site-nav-wordmark">
+          <span class="site-nav-wordmark-dev">Dev</span><span
+            class="site-nav-wordmark-options">Options</span
+          >
+        </span>
       </a>
 
       <div class="nav-desktop-end">
@@ -95,7 +100,7 @@ const {
       tabindex="-1"
     ></button>
 
-    <div class="nav-mobile-panel">
+    <div class="nav-mobile-panel bg-background/90 backdrop-blur-md">
       <ul>
         {
           links.map((link) => (
@@ -200,13 +205,32 @@ const {
   }
 
   .navbar-logo {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     opacity: 0.95;
     transition: opacity 0.15s ease;
   }
 
   .navbar-logo:hover {
     opacity: 1;
+  }
+
+  .site-nav-wordmark {
+    display: inline-flex;
+    align-items: baseline;
+    font-family: var(--font-display);
+    font-size: var(--text-heading-h3);
+    line-height: 1;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+  }
+  .site-nav-wordmark-dev {
+    color: var(--color-brand-2);
+  }
+
+  .site-nav-wordmark-options {
+    color: var(--color-brand-4);
   }
 
   .nav-link {

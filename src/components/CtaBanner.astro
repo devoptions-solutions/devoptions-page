@@ -36,8 +36,8 @@ const { title, description, cta } = Astro.props;
     <p class="cta-banner-description">{description}</p>
     <Button
       href={cta.href}
-      variant="secondary"
-      class="cta-banner-button border-transparent bg-white text-primary hover:bg-surface"
+      variant="primary"
+      class="cta-banner-button border-transparent bg-accent text-white hover:bg-accent-hover"
     >
       {cta.label}
     </Button>
@@ -79,9 +79,9 @@ const { title, description, cta } = Astro.props;
     z-index: -1;
     background: linear-gradient(
       105deg,
-      rgb(26 26 46 / 0.88) 0%,
-      rgb(95 27 242 / 0.72) 45%,
-      rgb(7 109 242 / 0.65) 100%
+      rgb(36 16 38 / 0.92) 0%,
+      rgb(75 19 79 / 0.78) 45%,
+      rgb(155 75 160 / 0.7) 100%
     );
   }
 

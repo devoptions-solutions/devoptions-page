@@ -7,8 +7,8 @@
    viewBox="0 0 814.22205 258.16876"
    version="1.1"
    id="svg1"
-   inkscape:version="1.4.4 (1:1.4.4+202605061435+dcaf3e7d9e)"
-   sodipodi:docname="brand2.svg"
+   inkscape:version="1.4.2 (ebf0e940, 2025-05-08)"
+   sodipodi:docname="brand3.svg"
    inkscape:export-filename="brand2-1.svg"
    inkscape:export-xdpi="28.675325"
    inkscape:export-ydpi="28.675325"
@@ -27,13 +27,13 @@
      inkscape:deskcolor="#505050"
      inkscape:document-units="px"
      inkscape:zoom="1.1073171"
-     inkscape:cx="534.62555"
-     inkscape:cy="276.79515"
-     inkscape:window-width="2503"
-     inkscape:window-height="1371"
+     inkscape:cx="381.55285"
+     inkscape:cy="143.13876"
+     inkscape:window-width="1512"
+     inkscape:window-height="842"
      inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="1"
+     inkscape:window-y="33"
+     inkscape:window-maximized="0"
      inkscape:current-layer="layer1">
     <inkscape:page
        x="0"
@@ -56,15 +56,15 @@
        style="display:inline"
        transform="matrix(0.82414399,0,0,0.82414399,-25.225621,-186.70252)">
       <path
-         style="fill:#5f1bf2;fill-opacity:1"
+         style="fill:#6a1f70;fill-opacity:1"
          d="m 35.879622,477.4411 -0.220121,-64.49527 137.575239,-79.02322 131.41186,76.38178 -26.85468,15.62854 -104.7773,-60.86328 -110.940673,63.50473 0.660361,33.89854 z"
          id="path1" />
       <path
-         style="fill:#5f1bf2;fill-opacity:1"
+         style="fill:#6a1f70;fill-opacity:1"
          d="M 148.02183,427.09979 35.643532,494.80694 v 72.6879 l 122.495458,71.28707 0.15565,-31.59667 -95.568249,-56.0335 -0.311297,-50.5858 96.035196,-57.58999 z"
          id="path2" />
       <circle
-         style="display:inline;fill:#5f1bf2;fill-opacity:1;stroke-width:1.49138"
+         style="display:inline;fill:#6a1f70;fill-opacity:1;stroke-width:1.49138"
          id="path3-3"
          cx="174.49875"
          cy="422.29623"
@@ -78,7 +78,7 @@
     </g>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:94.5021px;font-family:'Bespoke Slab';-inkscape-font-specification:'Bespoke Slab Ultra-Bold';writing-mode:lr-tb;direction:ltr;display:inline;fill:#5f1bf2;fill-opacity:1;stroke-width:0.824144"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:94.5021px;font-family:'Bespoke Slab';-inkscape-font-specification:'Bespoke Slab Ultra-Bold';writing-mode:lr-tb;direction:ltr;display:inline;fill:#6a1f70;fill-opacity:1;stroke-width:0.824144"
        x="239.94632"
        y="248.61758"
        id="text6"><tspan
@@ -86,21 +86,21 @@
          id="tspan6"
          x="239.94632"
          y="248.61758"
-         style="stroke-width:0.824144">Dev</tspan></text>
+         style="stroke-width:0.824144;fill:#6a1f70;fill-opacity:1">Dev</tspan></text>
     <g
        id="g6"
        style="display:inline"
        transform="matrix(0.82414399,0,0,0.82414399,-25.225621,-186.70252)">
       <path
-         style="fill:#076df2;fill-opacity:1"
+         style="fill:#ff6b6b;fill-opacity:1"
          d="m 216.35157,498.77598 66.53978,-37.74479 0.54477,121.63939 26.53809,-15.72051 -0.0778,-143.1189 -95.95737,54.16572 z"
          id="path4" />
       <path
-         style="fill:#076df2;fill-opacity:1"
+         style="fill:#ff6b6b;fill-opacity:1"
          d="m 309.93374,566.96706 -135.0132,80.21242 -0.17678,-76.36753 -37.03471,-22.27387 9.89949,-16.35184 46.49227,27.66555 0.35355,43.57546 L 283.3125,551.5 Z"
          id="path5" />
       <circle
-         style="fill:#076df2;fill-opacity:1;stroke-width:2.10527"
+         style="fill:#ff6b6b;fill-opacity:1;stroke-width:2.10527"
          id="path6-1-3-6"
          cy="529.625"
          cx="122.75"
@@ -112,7 +112,7 @@
          cx="122.5"
          r="11.875" />
       <circle
-         style="fill:#076df2;fill-opacity:1;stroke-width:2.10527"
+         style="fill:#ff6b6b;fill-opacity:1;stroke-width:2.10527"
          id="path6-1-3"
          cy="491.25"
          cx="193"
@@ -126,7 +126,7 @@
     </g>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:94.5021px;font-family:'Bespoke Slab';-inkscape-font-specification:'Bespoke Slab Ultra-Bold';writing-mode:lr-tb;direction:ltr;display:inline;fill:#076df2;fill-opacity:1;stroke-width:0.824144"
+       style="font-style:normal;font-variant:normal;font-weight:800;font-stretch:normal;font-size:94.5021px;font-family:'Bespoke Slab';-inkscape-font-specification:'Bespoke Slab Ultra-Bold';writing-mode:lr-tb;direction:ltr;display:inline;fill:#ff6b6b;fill-opacity:1;stroke-width:0.824144"
        x="427.79434"
        y="248.42615"
        id="text7"><tspan
@@ -134,6 +134,6 @@
          id="tspan7"
          x="427.79434"
          y="248.42615"
-         style="stroke-width:0.824144">Options</tspan></text>
+         style="stroke-width:0.824144;fill:#ff6b6b;fill-opacity:1">Options</tspan></text>
   </g>
 </svg>
