@@ -3,6 +3,7 @@ interface Props {
   title: string;
   description?: string;
   iconBg?: string;
+  href?: string;
   class?: string;
 }
 
@@ -10,6 +11,7 @@ const {
   title,
   description,
   iconBg = "bg-brand-1/20",
+  href,
   class: className = "",
 } = Astro.props;
 
@@ -18,15 +20,18 @@ const classes = [
   "shadow-[0_4px_24px_rgba(15,34,64,0.06)]",
   "transition-[border-color,box-shadow,transform] duration-200",
   "hover:border-brand-2/20 hover:shadow-[0_8px_32px_rgba(0,71,171,0.14)]",
+  href ? "block no-underline text-inherit" : "",
   className,
 ]
   .filter(Boolean)
   .join(" ");
 
 const iconClasses = ["card-icon", iconBg].filter(Boolean).join(" ");
+
+const Tag = href ? "a" : "article";
 ---
 
-<article class={classes}>
+<Tag class={classes} {...(href ? { href } : {})}>
   {
     Astro.slots.has("icon") && (
       <div class={iconClasses}>
@@ -49,7 +54,7 @@ const iconClasses = ["card-icon", iconBg].filter(Boolean).join(" ");
       </div>
     )
   }
-</article>
+</Tag>
 
 <style>
   .card-icon {

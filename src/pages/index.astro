@@ -9,32 +9,7 @@ import Footer from "@components/Footer.astro";
 import Hero from "@components/Hero.astro";
 import MainLayout from "@layouts/MainLayout.astro";
 import Navbar from "@components/Navbar.astro";
-import RocketIcon from "@assets/rocket.svg";
-import SecurityIcon from "@assets/security.svg";
-import ServerIcon from "@assets/server.svg";
-
-const services = [
-  {
-    title: "Desarrollo seguro",
-    description:
-      "Aplicaciones web y APIs con prácticas de seguridad desde el código.",
-    icon: RocketIcon,
-    iconBg: "bg-brand-1/20",
-  },
-  {
-    title: "Auditoría de datos",
-    description:
-      "Revisión de vulnerabilidades, accesos y cumplimiento normativo.",
-    icon: SecurityIcon,
-    iconBg: "bg-brand-1/20",
-  },
-  {
-    title: "Implementación",
-    description: "Despliegue, integración y hardening de infraestructura.",
-    icon: ServerIcon,
-    iconBg: "bg-brand-1/20",
-  },
-];
+import { getServiceHref, services } from "@data/services";
 ---
 
 <MainLayout title="DevOptions — Desarrollo seguro de software">
@@ -65,8 +40,9 @@ const services = [
           services.map((service) => (
             <Card
               title={service.title}
-              description={service.description}
+              description={service.cardDescription}
               iconBg={service.iconBg}
+              href={getServiceHref(service.id)}
             >
               <img
                 slot="icon"
