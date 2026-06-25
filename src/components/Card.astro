@@ -31,7 +31,7 @@ const iconClasses = ["card-icon", iconBg].filter(Boolean).join(" ");
 const Tag = href ? "a" : "article";
 ---
 
-<Tag class={classes} {...(href ? { href } : {})}>
+<Tag class={classes} {...href ? { href } : {}}>
   {
     Astro.slots.has("icon") && (
       <div class={iconClasses}>

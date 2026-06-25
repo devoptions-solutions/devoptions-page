@@ -25,7 +25,7 @@ const { service } = Astro.props;
 const navLinks = [
   { label: "Servicios", href: "/#servicios" },
   { label: "Seguridad", href: "/#seguridad" },
-  { label: "Contacto", href: "/#contacto" },
+  { label: "Nosotros", href: "/about" },
 ];
 ---
 
@@ -66,7 +66,9 @@ const navLinks = [
             {service.heading}
           </h1>
 
-          <p class="mt-4 text-body-md leading-relaxed text-text-secondary sm:mt-6 sm:text-body-lg">
+          <p
+            class="mt-4 text-body-md leading-relaxed text-text-secondary sm:mt-6 sm:text-body-lg"
+          >
             {service.description}
           </p>
 
@@ -118,9 +120,7 @@ const navLinks = [
           </p>
         </div>
 
-        <ul
-          class="mt-10 grid gap-4 sm:mt-14 sm:gap-6 md:grid-cols-3 lg:gap-8"
-        >
+        <ul class="mt-10 grid gap-4 sm:mt-14 sm:gap-6 md:grid-cols-3 lg:gap-8">
           {
             service.highlights.map((item) => (
               <li class="rounded-lg border border-border bg-background p-5 sm:p-6">

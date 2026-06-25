@@ -1,0 +1,343 @@
+---
+interface Props {
+  message?: string;
+}
+const { message = "¡Mensaje enviado con éxito!" } = Astro.props;
+---
+
+<div class="success-container" role="status" aria-live="polite">
+  <div class="success-icon-wrap">
+    <span class="success-ring r1" aria-hidden="true"></span>
+    <span class="success-ring r2" aria-hidden="true"></span>
+
+    <svg
+      class="checkmark"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 52 52"
+      aria-hidden="true"
+    >
+      <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"
+      ></circle>
+      <g transform="translate(14, 14)">
+        <g class="checkmark-hand">
+          <path
+            fill="white"
+            stroke="none"
+            d="M15.0556 9.00391C15.5164 7.57689 15.7491 6.32772 15.7491 5.25064C15.7491 2.85197 14.81 1.00323 13.2491 1.00323C12.4023 1.00323 12.1402 1.50747 11.8123 2.75005C11.8295 2.68512 11.6494 3.38401 11.5968 3.57126C11.4958 3.93 11.32 4.54075 11.0697 5.40227C11.063 5.42535 11.0532 5.4471 11.0403 5.46718L8.17359 9.95284C7.49554 11.0138 6.49507 11.8293 5.31919 12.2795L4.06196 12.7609C3.26859 13.0646 2.80797 13.8943 2.96968 14.7283L3.65584 18.267C3.82298 19.1289 4.47629 19.815 5.32909 20.024L13.5786 22.0459C16.1098 22.6663 18.6682 21.1314 19.3121 18.606L20.886 12.4333C21.2612 10.9616 20.3723 9.46441 18.9007 9.08916C18.6786 9.03255 18.4504 9.00391 18.2212 9.00391H15.0556Z"
+          ></path>
+        </g>
+      </g>
+    </svg>
+
+    <span class="dot d1" aria-hidden="true"></span>
+    <span class="dot d2" aria-hidden="true"></span>
+    <span class="dot d3" aria-hidden="true"></span>
+    <span class="dot d4" aria-hidden="true"></span>
+    <span class="dot d5" aria-hidden="true"></span>
+    <span class="dot d6" aria-hidden="true"></span>
+  </div>
+
+  <p class="success-text">{message}</p>
+  <p class="success-subtext">
+    Revisamos cada solicitud con atención. Te responderemos en menos de 48 horas
+    hábiles.
+  </p>
+</div>
+
+<style>
+  .success-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2.75rem 1.5rem 3rem;
+    min-height: 20rem;
+    text-align: center;
+  }
+
+  /* ── Icon wrapper ─────────────────────────────── */
+  .success-icon-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 6rem;
+    height: 6rem;
+  }
+
+  /* ── SVG checkmark ────────────────────────────── */
+  .checkmark {
+    position: relative;
+    z-index: 1;
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    display: block;
+    stroke-width: 4;
+    stroke: #fff;
+    stroke-miterlimit: 10;
+    box-shadow: inset 0 0 0 0 var(--color-success);
+  }
+
+  .success-container.is-visible .checkmark {
+    animation:
+      fill-success 0.4s ease-in-out 0.4s forwards,
+      bounce 0.3s ease-in-out 0.9s both;
+  }
+
+  .checkmark-circle {
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-width: 2;
+    stroke-miterlimit: 10;
+    stroke: var(--color-success);
+    fill: none;
+  }
+
+  .success-container.is-visible .checkmark-circle {
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+  }
+
+  .checkmark-hand {
+    transform-box: fill-box;
+    transform-origin: center;
+    opacity: 0;
+    transform: scale(0) rotate(-20deg);
+  }
+
+  .success-container.is-visible .checkmark-hand {
+    animation: hand-pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) 1s forwards;
+  }
+
+  @keyframes hand-pop {
+    from {
+      opacity: 0;
+      transform: scale(0) rotate(-20deg);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+  }
+
+  /* ── Rings ────────────────────────────────────── */
+  .success-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid var(--color-success);
+    opacity: 0;
+  }
+
+  .success-container.is-visible .r1 {
+    animation: ring-expand 0.65s ease-out 1s forwards;
+  }
+
+  .success-container.is-visible .r2 {
+    animation: ring-expand 0.65s ease-out 1.18s forwards;
+  }
+
+  /* ── Particles ────────────────────────────────── */
+  .dot {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    opacity: 0;
+    top: 50%;
+    left: 50%;
+  }
+
+  .d1 {
+    background: var(--color-success);
+  }
+  .d2 {
+    background: var(--color-brand-4);
+  }
+  .d3 {
+    background: var(--color-brand-3);
+  }
+  .d4 {
+    background: var(--color-success);
+  }
+  .d5 {
+    background: var(--color-brand-1);
+  }
+  .d6 {
+    background: var(--color-brand-4);
+  }
+
+  .success-container.is-visible .d1 {
+    animation: s1 0.55s ease-out 1s forwards;
+  }
+  .success-container.is-visible .d2 {
+    animation: s2 0.55s ease-out 1.05s forwards;
+  }
+  .success-container.is-visible .d3 {
+    animation: s3 0.55s ease-out 1.08s forwards;
+  }
+  .success-container.is-visible .d4 {
+    animation: s4 0.55s ease-out 1.02s forwards;
+  }
+  .success-container.is-visible .d5 {
+    animation: s5 0.55s ease-out 1.06s forwards;
+  }
+  .success-container.is-visible .d6 {
+    animation: s6 0.55s ease-out 1.03s forwards;
+  }
+
+  /* ── Text ─────────────────────────────────────── */
+  .success-text {
+    margin-top: 1.75rem;
+    font-family: var(--font-display);
+    font-size: var(--text-heading-h3);
+    line-height: var(--text-heading-h3--line-height);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  .success-container.is-visible .success-text {
+    animation: fadeUp 0.5s ease-out 1.12s forwards;
+  }
+
+  .success-subtext {
+    margin-top: 0.625rem;
+    max-width: 22rem;
+    font-size: var(--text-body-sm);
+    line-height: var(--text-body-sm--line-height);
+    color: var(--color-text-secondary);
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  .success-container.is-visible .success-subtext {
+    animation: fadeUp 0.5s ease-out 1.27s forwards;
+  }
+
+  /* ── Keyframes ────────────────────────────────── */
+  @keyframes stroke {
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes fill-success {
+    100% {
+      box-shadow: inset 0 0 0 2.5rem var(--color-success);
+    }
+  }
+
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: none;
+    }
+    50% {
+      transform: scale3d(1.08, 1.08, 1);
+    }
+  }
+
+  @keyframes ring-expand {
+    0% {
+      transform: scale(1);
+      opacity: 0.55;
+    }
+    100% {
+      transform: scale(1.8);
+      opacity: 0;
+    }
+  }
+
+  @keyframes s1 {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(calc(-50% - 3.5rem), calc(-50% - 2.25rem));
+    }
+  }
+  @keyframes s2 {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(calc(-50% + 3.5rem), calc(-50% - 2.25rem));
+    }
+  }
+  @keyframes s3 {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(calc(-50% - 2.75rem), calc(-50% + 3rem));
+    }
+  }
+  @keyframes s4 {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(calc(-50% + 2.75rem), calc(-50% + 3rem));
+    }
+  }
+  @keyframes s5 {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(calc(-50% + 4.25rem), calc(-50% + 0.25rem));
+    }
+  }
+  @keyframes s6 {
+    0% {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(calc(-50% - 4.25rem), calc(-50% + 0.25rem));
+    }
+  }
+
+  @keyframes fadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ── Reduced motion ───────────────────────────── */
+  @media (prefers-reduced-motion: reduce) {
+    .success-container.is-visible .checkmark,
+    .success-container.is-visible .checkmark-circle,
+    .success-container.is-visible .checkmark-hand,
+    .success-container.is-visible .success-ring,
+    .success-container.is-visible .dot,
+    .success-container.is-visible .success-text,
+    .success-container.is-visible .success-subtext {
+      animation: none !important;
+      opacity: 1;
+      transform: none;
+    }
+
+    .success-container.is-visible .checkmark {
+      box-shadow: inset 0 0 0 2.5rem var(--color-success);
+    }
+
+    .success-container.is-visible .checkmark-circle {
+      stroke-dashoffset: 0;
+    }
+  }
+</style>

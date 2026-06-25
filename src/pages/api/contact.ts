@@ -26,11 +26,17 @@ export const POST: APIRoute = async ({ request }) => {
   const company = String(form.get("company") ?? "").trim();
 
   if (!name || !email || !message) {
-    return new Response("Faltan campos", { status: 400 });
+    return Response.redirect(
+      new URL("/?contacto=invalido&motivo=campos#contacto", request.url),
+      303,
+    );
   }
 
   if (!isValidEmail(email)) {
-    return new Response("Email inválido", { status: 400 });
+    return Response.redirect(
+      new URL("/?contacto=invalido&motivo=email#contacto", request.url),
+      303,
+    );
   }
 
   const apiKey = import.meta.env.BREVO_API_KEY;
@@ -38,7 +44,10 @@ export const POST: APIRoute = async ({ request }) => {
   const toEmail = import.meta.env.BREVO_TO_EMAIL;
 
   if (!apiKey || !senderEmail || !toEmail) {
-    return new Response("Configuración incompleta", { status: 500 });
+    return Response.redirect(
+      new URL("/?contacto=error#contacto", request.url),
+      303,
+    );
   }
 
   const textContent = [
@@ -80,7 +89,10 @@ export const POST: APIRoute = async ({ request }) => {
   if (!upstream.ok) {
     const errorBody = await upstream.text();
     console.error("Brevo error:", upstream.status, errorBody);
-    return new Response("No se pudo enviar", { status: 502 });
+    return Response.redirect(
+      new URL("/?contacto=error#contacto", request.url),
+      303,
+    );
   }
 
   return Response.redirect(new URL("/?contacto=ok#contacto", request.url), 303);

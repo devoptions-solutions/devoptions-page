@@ -25,9 +25,13 @@ const variants: Record<Variant, string> = {
 };
 
 const classes = [
+  "btn",
   "inline-flex items-center justify-center rounded-md px-6 py-3",
-  "text-label-md font-bold transition-colors",
+  "text-label-md font-bold",
+  "select-none",
+  "transition-[transform,background-color,filter,box-shadow] duration-150 ease-out",
   "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
+  "disabled:pointer-events-none disabled:opacity-70",
   variants[variant],
   className,
 ]
@@ -46,3 +50,36 @@ const classes = [
     </button>
   )
 }
+
+<style>
+  .btn:active:not(:disabled) {
+    transform: scale(0.96) translateY(1px);
+    filter: brightness(0.97);
+  }
+
+  .btn.is-submitting {
+    transform: scale(0.98);
+    animation: btn-submit-pulse 1.1s ease-in-out infinite;
+  }
+
+  @keyframes btn-submit-pulse {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 rgb(255 99 71 / 0.35);
+    }
+    50% {
+      box-shadow: 0 0 0 6px rgb(255 99 71 / 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn:active:not(:disabled) {
+      transform: none;
+      filter: none;
+    }
+
+    .btn.is-submitting {
+      animation: none;
+    }
+  }
+</style>

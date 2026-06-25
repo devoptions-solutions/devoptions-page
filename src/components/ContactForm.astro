@@ -1,8 +1,10 @@
 ---
 import Badge from "@components/Badge.astro";
 import Button from "@components/Button.astro";
+import ErrorMessage from "@components/ErrorMessage.astro";
 import Form from "@components/Form.astro";
 import Input from "@components/Input.astro";
+import SuccessMessage from "@components/SuccessMessage.astro";
 
 interface Props {
   action?: string;
@@ -70,57 +72,114 @@ const { action = "/api/contact" } = Astro.props;
         </ul>
       </div>
 
-      <Form
-        action={action}
-        method="post"
-        name="contact"
-        title="Envíanos un mensaje"
-        description="Los campos marcados son obligatorios."
-        class="contact-form"
-      >
-        <div class="form-row">
+      <!-- Form panel -->
+      <div class="contact-form-panel" data-contact-panel="form">
+        <!-- Invalid data notice (hidden by default, shown by JS) -->
+        <div
+          class="contact-notice"
+          data-contact-notice
+          hidden
+          role="alert"
+          aria-live="assertive"
+        >
+          <span class="contact-notice-icon" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"
+              ></path>
+              <line x1="12" y1="9" x2="12" y2="13"></line>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+          </span>
+          <div class="contact-notice-body">
+            <p class="contact-notice-title">Revisa los campos</p>
+            <p class="contact-notice-msg" data-contact-notice-msg></p>
+          </div>
+          <button
+            class="contact-notice-close"
+            data-contact-notice-close
+            type="button"
+            aria-label="Cerrar aviso"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+
+        <Form
+          action={action}
+          method="post"
+          name="contact"
+          title="Envíanos un mensaje"
+          description="Los campos marcados son obligatorios."
+          class="contact-form"
+        >
+          <div class="form-row">
+            <Input
+              label="Nombre"
+              name="name"
+              placeholder="Tu nombre"
+              required
+              autocomplete="name"
+            />
+            <Input
+              label="Email"
+              name="email"
+              type="email"
+              placeholder="tu@email.com"
+              autocomplete="email"
+              required
+            />
+          </div>
           <Input
-            label="Nombre"
-            name="name"
-            placeholder="Tu nombre"
-            required
-            autocomplete="name"
+            label="Empresa"
+            name="company"
+            placeholder="Nombre de tu empresa (opcional)"
+            autocomplete="organization"
           />
           <Input
-            label="Email"
-            name="email"
-            type="email"
-            placeholder="tu@email.com"
-            autocomplete="email"
+            label="Mensaje"
+            name="message"
+            type="textarea"
+            placeholder="Cuéntanos sobre tu proyecto, plazos y objetivos..."
+            rows={5}
             required
           />
-        </div>
-        <Input
-          label="Empresa"
-          name="company"
-          placeholder="Nombre de tu empresa (opcional)"
-          autocomplete="organization"
-        />
-        <Input
-          label="Mensaje"
-          name="message"
-          type="textarea"
-          placeholder="Cuéntanos sobre tu proyecto, plazos y objetivos..."
-          rows={5}
-          required
-        />
 
-        <p class="contact-privacy">
-          Al enviar este formulario aceptas que usemos tus datos solo para
-          responder a tu consulta.
-        </p>
+          <p class="contact-privacy">
+            Al enviar este formulario aceptas que usemos tus datos solo para
+            responder a tu consulta.
+          </p>
 
-        <div slot="actions">
-          <Button type="submit" class="w-full sm:w-auto">
-            Enviar mensaje
-          </Button>
-        </div>
-      </Form>
+          <div slot="actions">
+            <Button type="submit" class="contact-submit w-full sm:w-auto">
+              Enviar mensaje
+            </Button>
+          </div>
+        </Form>
+      </div>
+
+      <!-- Success panel -->
+      <div class="contact-feedback-panel" data-contact-panel="success" hidden>
+        <SuccessMessage message="¡Mensaje enviado con éxito!" />
+      </div>
+
+      <!-- Error panel -->
+      <div class="contact-feedback-panel" data-contact-panel="error" hidden>
+        <ErrorMessage />
+      </div>
     </div>
   </div>
 </section>
@@ -198,12 +257,24 @@ const { action = "/api/contact" } = Astro.props;
     height: 0.875rem;
   }
 
-  .contact-form {
+  /* ── Panels ───────────────────────────────────── */
+  .contact-form-panel {
     position: relative;
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
   }
 
-  .contact-form::before {
+  .contact-feedback-panel {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    background: var(--color-background);
+    box-shadow: 0 4px 24px rgb(15 34 64 / 0.06);
+  }
+
+  .contact-feedback-panel::before {
     content: "";
     position: absolute;
     top: 0;
@@ -216,6 +287,94 @@ const { action = "/api/contact" } = Astro.props;
       var(--color-brand-3),
       var(--color-brand-4)
     );
+    z-index: 1;
+  }
+
+  .contact-feedback-panel[hidden] {
+    display: none;
+  }
+
+  /* ── Form card ────────────────────────────────── */
+  .contact-form {
+    overflow: hidden;
+  }
+
+  /* ── Invalid notice ───────────────────────────── */
+  .contact-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.875rem 1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid rgb(245 158 11 / 0.35);
+    background: rgb(245 158 11 / 0.08);
+    animation: notice-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+
+  .contact-notice[hidden] {
+    display: none;
+  }
+
+  .contact-notice-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-top: 0.1rem;
+    color: var(--color-warning);
+  }
+
+  .contact-notice-icon svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .contact-notice-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .contact-notice-title {
+    font-size: var(--text-body-sm);
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  .contact-notice-msg {
+    margin-top: 0.125rem;
+    font-size: var(--text-caption);
+    line-height: var(--text-caption--line-height);
+    color: var(--color-text-secondary);
+  }
+
+  .contact-notice-close {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0;
+    border: none;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition:
+      color 0.15s ease,
+      background-color 0.15s ease;
+  }
+
+  .contact-notice-close:hover {
+    color: var(--color-text-primary);
+    background: rgb(0 0 0 / 0.05);
+  }
+
+  .contact-notice-close svg {
+    width: 0.875rem;
+    height: 0.875rem;
   }
 
   .contact-privacy {
@@ -223,4 +382,124 @@ const { action = "/api/contact" } = Astro.props;
     line-height: var(--text-caption--line-height);
     color: var(--color-text-secondary);
   }
+
+  /* ── Keyframes ────────────────────────────────── */
+  @keyframes notice-in {
+    from {
+      opacity: 0;
+      transform: translateY(-0.5rem) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .contact-notice {
+      animation: none;
+    }
+  }
 </style>
+
+<script>
+  const formPanel = document.querySelector('[data-contact-panel="form"]');
+  const successPanel = document.querySelector('[data-contact-panel="success"]');
+  const errorPanel = document.querySelector('[data-contact-panel="error"]');
+  const contactForm = document.querySelector('form[name="contact"]');
+  const submitButton = contactForm?.querySelector(".contact-submit");
+
+  const NOTICE_MESSAGES: Record<string, string> = {
+    campos: "Por favor completa nombre, email y mensaje.",
+    email: "El email que ingresaste no tiene un formato válido.",
+  };
+
+  function activatePanel(panel: Element | null, feedbackClass: string): void {
+    if (!(panel instanceof HTMLElement)) return;
+    panel.hidden = false;
+    const feedback = panel.querySelector(`.${feedbackClass}`);
+    if (feedback instanceof HTMLElement) {
+      requestAnimationFrame(() => feedback.classList.add("is-visible"));
+    }
+  }
+
+  function showNotice(motivo: string): void {
+    if (!(formPanel instanceof HTMLElement)) return;
+    const notice = formPanel.querySelector("[data-contact-notice]");
+    const msgEl = formPanel.querySelector("[data-contact-notice-msg]");
+    if (!(notice instanceof HTMLElement) || !(msgEl instanceof HTMLElement))
+      return;
+
+    msgEl.textContent =
+      NOTICE_MESSAGES[motivo] ?? "Revisa que todos los campos estén correctos.";
+
+    notice.hidden = false;
+    notice.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  // ── Submit feedback ──────────────────────────────────────────────
+  if (
+    contactForm instanceof HTMLFormElement &&
+    submitButton instanceof HTMLButtonElement
+  ) {
+    contactForm.addEventListener("submit", () => {
+      submitButton.disabled = true;
+      submitButton.classList.add("is-submitting");
+      submitButton.setAttribute("aria-busy", "true");
+      submitButton.textContent = "Enviando…";
+    });
+  }
+
+  // ── URL param handling ───────────────────────────────────────────
+  if (
+    formPanel instanceof HTMLElement &&
+    successPanel instanceof HTMLElement &&
+    errorPanel instanceof HTMLElement
+  ) {
+    const url = new URL(window.location.href);
+    const estado = url.searchParams.get("contacto");
+    const motivo = url.searchParams.get("motivo") ?? "";
+
+    if (estado === "ok") {
+      formPanel.hidden = true;
+      activatePanel(successPanel, "success-container");
+    } else if (estado === "error") {
+      formPanel.hidden = true;
+      activatePanel(errorPanel, "error-container");
+    } else if (estado === "invalido") {
+      showNotice(motivo);
+    }
+
+    if (estado) {
+      url.searchParams.delete("contacto");
+      url.searchParams.delete("motivo");
+      window.history.replaceState({}, "", url);
+    }
+  }
+
+  // ── Retry button (in error panel) ────────────────────────────────
+  document.addEventListener("click", (e) => {
+    const target = e.target;
+    if (
+      target instanceof HTMLElement &&
+      target.closest("[data-contact-action='retry']") &&
+      formPanel instanceof HTMLElement &&
+      errorPanel instanceof HTMLElement
+    ) {
+      errorPanel.hidden = true;
+      formPanel.hidden = false;
+    }
+  });
+
+  // ── Close notice ─────────────────────────────────────────────────
+  document.addEventListener("click", (e) => {
+    const target = e.target;
+    if (
+      target instanceof HTMLElement &&
+      target.closest("[data-contact-notice-close]")
+    ) {
+      const notice = target.closest("[data-contact-notice]");
+      if (notice instanceof HTMLElement) notice.hidden = true;
+    }
+  });
+</script>

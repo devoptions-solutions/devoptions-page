@@ -1,0 +1,434 @@
+---
+export const prerender = true;
+
+import Badge from "@components/Badge.astro";
+import Button from "@components/Button.astro";
+import CtaBanner from "@components/CtaBanner.astro";
+import Footer from "@components/Footer.astro";
+import MainLayout from "@layouts/MainLayout.astro";
+import Navbar from "@components/Navbar.astro";
+
+const navLinks = [
+  { label: "Servicios", href: "/#servicios" },
+  { label: "Seguridad", href: "/#seguridad" },
+  { label: "Nosotros", href: "/about" },
+];
+
+const values = [
+  {
+    title: "Desarrollo seguro",
+    description:
+      "Cada línea de código sigue prácticas de seguridad probadas, desde el diseño hasta la entrega.",
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 12 2 2 4-4"/>`,
+  },
+  {
+    title: "Calidad sin compromisos",
+    description:
+      "Revisión continua, pruebas rigurosas y estándares altos en cada proyecto que emprendemos.",
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 0 0 1.946-.806 3.42 3.42 0 0 1 4.438 0 3.42 3.42 0 0 0 1.946.806 3.42 3.42 0 0 1 3.138 3.138 3.42 3.42 0 0 0 .806 1.946 3.42 3.42 0 0 1 0 4.438 3.42 3.42 0 0 0-.806 1.946 3.42 3.42 0 0 1-3.138 3.138 3.42 3.42 0 0 0-1.946.806 3.42 3.42 0 0 1-4.438 0 3.42 3.42 0 0 0-1.946-.806 3.42 3.42 0 0 1-3.138-3.138 3.42 3.42 0 0 0-.806-1.946 3.42 3.42 0 0 1 0-4.438 3.42 3.42 0 0 0 .806-1.946 3.42 3.42 0 0 1 3.138-3.138z"/>`,
+  },
+  {
+    title: "Privacidad por diseño",
+    description:
+      "La protección de los datos no es un añadido posterior: es parte del núcleo de nuestra arquitectura.",
+    icon: `<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path stroke-linecap="round" stroke-linejoin="round" d="M7 11V7a5 5 0 0 1 10 0v4"/>`,
+  },
+  {
+    title: "Escalabilidad",
+    description:
+      "Construimos sistemas que crecen con tu negocio sin sacrificar rendimiento ni seguridad.",
+    icon: `<polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>`,
+  },
+];
+---
+
+<MainLayout title="Nosotros | DevOptions">
+  <Navbar links={navLinks} ctaHref="/#contacto" />
+
+  <main>
+    <!-- ── Hero ──────────────────────────────────────── -->
+    <section
+      class="about-hero relative overflow-hidden bg-surface py-16 sm:py-20 lg:py-28"
+    >
+      <div
+        class="about-grid-bg pointer-events-none absolute inset-0"
+        aria-hidden="true"
+      >
+      </div>
+      <div
+        class="pointer-events-none absolute -top-32 right-0 h-96 w-96 rounded-full bg-brand-1/10 blur-3xl"
+        aria-hidden="true"
+      >
+      </div>
+      <div
+        class="pointer-events-none absolute -bottom-16 -left-16 h-64 w-64 rounded-full bg-brand-4/8 blur-3xl"
+        aria-hidden="true"
+      >
+      </div>
+
+      <div class="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <!-- Copy -->
+          <div>
+            <Badge variant="brand">Nosotros</Badge>
+
+            <h1
+              class="mt-4 text-display-lg font-bold tracking-tight text-text-primary text-balance sm:mt-5"
+            >
+              Tecnología segura, desde el código hasta el despliegue
+            </h1>
+
+            <p
+              class="mt-5 text-body-md leading-relaxed text-text-secondary sm:text-body-lg"
+            >
+              Somos una firma de desarrollo de software con un enfoque
+              inquebrantable en la protección de la información. En DevOptions,
+              transformamos ideas complejas en sistemas robustos mediante
+              prácticas de desarrollo seguro y altos estándares de calidad.
+            </p>
+
+            <p
+              class="mt-4 text-body-md leading-relaxed text-text-secondary sm:text-body-lg"
+            >
+              Nos apasiona crear tecnología escalable, priorizando siempre la
+              integridad y privacidad de los datos en cada proyecto que
+              emprendemos.
+            </p>
+
+            <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button href="/#contacto" class="w-full justify-center sm:w-auto">
+                Hablar con el equipo
+              </Button>
+              <Button
+                variant="secondary"
+                href="/#servicios"
+                class="w-full justify-center sm:w-auto"
+              >
+                Ver servicios
+              </Button>
+            </div>
+          </div>
+
+          <!-- Visual card -->
+          <div class="about-card" aria-hidden="true">
+            <!-- Wordmark -->
+            <div class="about-card-brand">
+              <span class="about-wordmark">
+                <span class="about-wordmark-dev">Dev</span><span
+                  class="about-wordmark-options">Options</span
+                >
+              </span>
+              <p class="about-card-tagline">Desarrollo seguro de software</p>
+            </div>
+
+            <!-- Stats grid -->
+            <div class="about-card-stats">
+              <div class="about-stat">
+                <span class="about-stat-value">100%</span>
+                <span class="about-stat-label">Enfoque en seguridad</span>
+              </div>
+              <div class="about-stat">
+                <span class="about-stat-value">Acompañamiento</span>
+                <span class="about-stat-label">Asesoría, mantenimiento y soporte honestos</span>
+              </div>
+              <div class="about-stat about-stat-wide">
+                <span class="about-stat-value">ISO 27001</span>
+                <span class="about-stat-label">Cumplimiento normativo</span>
+              </div>
+            </div>
+
+            <!-- Tag pills -->
+            <div class="about-card-tags">
+              {
+                [
+                  "Seguridad",
+                  "APIs",
+                  "Cloud",
+                  "Hardening",
+                  "Compliance",
+                  "DevSecOps",
+                ].map((tag) => <span class="about-tag">{tag}</span>)
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Values ────────────────────────────────────── -->
+    <section class="py-16 sm:py-20 lg:py-28">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl text-center">
+          <Badge variant="neutral">Lo que nos guía</Badge>
+          <h2 class="mt-4 text-heading-h1 font-bold text-text-primary">
+            Principios que no negociamos
+          </h2>
+          <p class="mt-3 text-body-md text-text-secondary">
+            No son valores decorativos. Son las decisiones que tomamos a diario
+            al diseñar, construir y entregar software.
+          </p>
+        </div>
+
+        <ul
+          class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4 sm:gap-6"
+          role="list"
+        >
+          {
+            values.map((v) => (
+              <li class="about-value-card">
+                <span class="about-value-icon" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    set:html={v.icon}
+                  />
+                </span>
+                <h3 class="mt-4 text-heading-h3 font-bold text-text-primary">
+                  {v.title}
+                </h3>
+                <p class="mt-2 text-body-sm leading-relaxed text-text-secondary">
+                  {v.description}
+                </p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <!-- ── Mission strip ─────────────────────────────── -->
+    <section class="about-mission-strip">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <blockquote class="about-mission-quote">
+          <p>
+            "Transformamos ideas complejas en sistemas robustos, priorizando
+            siempre la integridad y privacidad de los datos."
+          </p>
+          <footer class="about-mission-author">— Equipo DevOptions</footer>
+        </blockquote>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</MainLayout>
+
+<style>
+  /* ── Hero background grid ───────────────────────── */
+  .about-grid-bg {
+    background-image:
+      linear-gradient(to right, rgb(0 71 171 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(0 71 171 / 0.05) 1px, transparent 1px);
+    background-size: 42px 42px;
+    mask-image: radial-gradient(
+      ellipse 90% 80% at 50% 0%,
+      black 30%,
+      transparent 100%
+    );
+  }
+
+  /* ── Visual card ────────────────────────────────── */
+  .about-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border);
+    background: var(--color-background);
+    box-shadow:
+      0 4px 24px rgb(15 34 64 / 0.07),
+      0 1px 3px rgb(15 34 64 / 0.04);
+    padding: 1.75rem;
+  }
+
+  .about-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(
+      90deg,
+      var(--color-brand-1),
+      var(--color-brand-2),
+      var(--color-brand-3),
+      var(--color-brand-4)
+    );
+  }
+
+  .about-card-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .about-wordmark {
+    display: inline-flex;
+    align-items: baseline;
+    font-family: var(--font-display);
+    font-size: var(--text-heading-h1);
+    line-height: 1;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+  }
+
+  .about-wordmark-dev {
+    color: var(--color-brand-4);
+    background-color: var(--color-brand-1);
+    padding: 0 0.1em;
+  }
+
+  .about-wordmark-options {
+    color: var(--color-brand-1);
+    background-color: var(--color-brand-4);
+    padding: 0 0.1em;
+  }
+
+  .about-card-tagline {
+    font-size: var(--text-body-sm);
+    color: var(--color-text-secondary);
+  }
+
+  /* Stats */
+  .about-card-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+  }
+
+  .about-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.875rem 1rem;
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+  }
+
+  .about-stat-wide {
+    grid-column: 1 / -1;
+  }
+
+  .about-stat-value {
+    font-family: var(--font-display);
+    font-size: var(--text-heading-h2, 1.5rem);
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1.2;
+  }
+
+  .about-stat-label {
+    font-size: var(--text-caption);
+    line-height: var(--text-caption--line-height);
+    color: var(--color-text-secondary);
+  }
+
+  /* Tag pills */
+  .about-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+  }
+
+  .about-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    font-size: var(--text-caption);
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    transition:
+      border-color 0.15s ease,
+      color 0.15s ease;
+  }
+
+  /* ── Values ─────────────────────────────────────── */
+  .about-value-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    background: var(--color-background);
+    box-shadow: 0 2px 12px rgb(15 34 64 / 0.05);
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .about-value-card:hover {
+    border-color: rgb(0 71 171 / 0.2);
+    box-shadow: 0 8px 28px rgb(0 71 171 / 0.1);
+    transform: translateY(-2px);
+  }
+
+  .about-value-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: var(--radius-md);
+    background: rgb(0 71 171 / 0.08);
+    color: var(--color-brand-2);
+    flex-shrink: 0;
+  }
+
+  .about-value-icon svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  /* ── Mission strip ──────────────────────────────── */
+  .about-mission-strip {
+    background: var(--color-background);
+    padding: 4rem 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .about-mission-strip {
+      padding: 5rem 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .about-mission-strip {
+      padding: 6rem 2rem;
+    }
+  }
+
+  .about-mission-quote {
+    position: relative;
+    max-width: 52rem;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    border-left: 3px solid var(--color-brand-4);
+  }
+
+  .about-mission-quote p {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--color-brand-4);
+    text-wrap: balance;
+  }
+
+  .about-mission-author {
+    margin-top: 1.25rem;
+    font-size: var(--text-body-sm);
+    /* color: rgb(255 255 255 / 0.5); */
+    color: var(--color-neutral-500);
+  }
+</style>

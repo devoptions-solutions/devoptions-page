@@ -17,8 +17,7 @@ const {
   links = [
     { label: "Servicios", href: "#servicios" },
     { label: "Seguridad", href: "#seguridad" },
-    { label: "Nosotros", href: "#nosotros" },
-    { label: "Contacto", href: "#contacto" },
+    { label: "Nosotros", href: "/about" },
   ],
   ctaLabel = "Agendar consulta",
   ctaHref = "#contacto",
@@ -97,8 +96,7 @@ const {
       type="button"
       class="nav-mobile-backdrop bg-neutral-900/35 backdrop-blur-sm"
       aria-label="Cerrar menú"
-      tabindex="-1"
-    ></button>
+      tabindex="-1"></button>
 
     <div class="nav-mobile-panel bg-background/90 backdrop-blur-md">
       <ul>
@@ -130,7 +128,10 @@ const {
   const isMobileNav = () => window.matchMedia(MOBILE_NAV_QUERY).matches;
 
   const closeMenu = () => {
-    if (!(menu instanceof HTMLElement) || !(trigger instanceof HTMLButtonElement)) {
+    if (
+      !(menu instanceof HTMLElement) ||
+      !(trigger instanceof HTMLButtonElement)
+    ) {
       return;
     }
 
@@ -181,13 +182,11 @@ const {
       link.addEventListener("click", closeMenu);
     });
 
-    window
-      .matchMedia(MOBILE_NAV_QUERY)
-      .addEventListener("change", (event) => {
-        if (!event.matches) {
-          closeMenu();
-        }
-      });
+    window.matchMedia(MOBILE_NAV_QUERY).addEventListener("change", (event) => {
+      if (!event.matches) {
+        closeMenu();
+      }
+    });
 
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && !menu.hidden) {

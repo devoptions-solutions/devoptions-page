@@ -10,7 +10,7 @@ import Navbar from "@components/Navbar.astro";
 const navLinks = [
   { label: "Servicios", href: "/#servicios" },
   { label: "Seguridad", href: "/#seguridad" },
-  { label: "Contacto", href: "/#contacto" },
+  { label: "Nosotros", href: "/about" },
 ];
 ---
 
@@ -61,7 +61,9 @@ const navLinks = [
         <div
           class="mt-8 flex flex-wrap items-center justify-center gap-3 sm:mt-10 sm:gap-4 lg:justify-start"
         >
-          <Button href="/" class="w-full justify-center sm:w-auto">Volver al inicio</Button>
+          <Button href="/" class="w-full justify-center sm:w-auto"
+            >Volver al inicio</Button
+          >
         </div>
       </div>
 
