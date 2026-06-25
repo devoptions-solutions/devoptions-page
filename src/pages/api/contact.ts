@@ -20,6 +20,11 @@ function isValidEmail(value: string): boolean {
 export const POST: APIRoute = async ({ request }) => {
   const form = await request.formData();
 
+  const honeypot = String(form.get("website") ?? "");
+  if (honeypot) {
+    return new Response(null, { status: 200 });
+  }
+
   const name = String(form.get("name") ?? "").trim();
   const email = String(form.get("email") ?? "").trim();
   const message = String(form.get("message") ?? "").trim();
@@ -69,22 +74,41 @@ export const POST: APIRoute = async ({ request }) => {
     .filter(Boolean)
     .join("");
 
-  const upstream = await fetch(BREVO_API_URL, {
-    method: "POST",
-    headers: {
-      "api-key": apiKey,
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: JSON.stringify({
-      sender: { name: "DevOptions", email: senderEmail },
-      to: [{ email: toEmail, name: "DevOptions" }],
-      replyTo: { email, name },
-      subject: `Nuevo contacto — ${name}`,
-      textContent,
-      htmlContent,
-    }),
-  });
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 8_000);
+
+  let upstream: Response;
+  try {
+    upstream = await fetch(BREVO_API_URL, {
+      method: "POST",
+      signal: controller.signal,
+      headers: {
+        "api-key": apiKey,
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        sender: { name: "DevOptions", email: senderEmail },
+        to: [{ email: toEmail, name: "DevOptions" }],
+        replyTo: { email, name },
+        subject: `Nuevo contacto — ${name}`,
+        textContent,
+        htmlContent,
+      }),
+    });
+  } catch (err) {
+    const reason =
+      err instanceof Error && err.name === "AbortError"
+        ? "Brevo timeout (>8s)"
+        : String(err);
+    console.error("Brevo fetch failed:", reason);
+    return Response.redirect(
+      new URL("/?contacto=error#contacto", request.url),
+      303,
+    );
+  } finally {
+    clearTimeout(timeoutId);
+  }
 
   if (!upstream.ok) {
     const errorBody = await upstream.text();
