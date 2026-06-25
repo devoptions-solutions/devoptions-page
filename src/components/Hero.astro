@@ -32,17 +32,26 @@ const {
       class="absolute inset-0 bg-linear-to-br from-brand-2/50 via-neutral-900 to-brand-3/55"
     >
     </div>
-    <div
-      class="absolute -top-20 right-0 h-48 w-48 rounded-full bg-brand-1/35 blur-3xl sm:-top-32 sm:h-[28rem] sm:w-[28rem]"
-    >
+    <!-- Orb superior-derecho — capa más lejana, mayor velocidad parallax -->
+    <div data-parallax="-0.18" class="absolute inset-0">
+      <div
+        class="absolute -top-20 right-0 h-48 w-48 rounded-full bg-brand-1/35 blur-3xl sm:-top-32 sm:h-[28rem] sm:w-[28rem]"
+      >
+      </div>
     </div>
-    <div
-      class="absolute -bottom-16 -left-16 h-56 w-56 rounded-full bg-brand-3/30 blur-3xl sm:-bottom-24 sm:-left-24 sm:h-96 sm:w-96"
-    >
+    <!-- Orb inferior-izquierdo — capa intermedia -->
+    <div data-parallax="-0.10" class="absolute inset-0">
+      <div
+        class="absolute -bottom-16 -left-16 h-56 w-56 rounded-full bg-brand-3/30 blur-3xl sm:-bottom-24 sm:-left-24 sm:h-96 sm:w-96"
+      >
+      </div>
     </div>
-    <div
-      class="absolute top-1/2 left-1/2 hidden h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-3/25 blur-3xl sm:block"
-    >
+    <!-- Orb central — capa frontal, menor desplazamiento -->
+    <div data-parallax="-0.13" class="absolute inset-0">
+      <div
+        class="absolute top-1/2 left-1/2 hidden h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-3/25 blur-3xl sm:block"
+      >
+      </div>
     </div>
     <div class="hero-grid absolute inset-0 opacity-[0.35]"></div>
     <div

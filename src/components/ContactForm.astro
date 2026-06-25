@@ -16,7 +16,7 @@ const { action = "/api/contact" } = Astro.props;
 <section id="contacto" class="contact-section py-14 sm:py-20 lg:py-28">
   <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
     <div class="contact-grid">
-      <div class="contact-copy">
+      <div data-reveal="stagger" class="contact-copy">
         <Badge variant="brand">Contacto</Badge>
         <h2 class="contact-title">Hablemos de tu proyecto</h2>
         <p class="contact-description">
@@ -73,7 +73,7 @@ const { action = "/api/contact" } = Astro.props;
       </div>
 
       <!-- Form panel -->
-      <div class="contact-form-panel" data-contact-panel="form">
+      <div data-reveal class="contact-form-panel" data-contact-panel="form">
         <!-- Invalid data notice (hidden by default, shown by JS) -->
         <div
           class="contact-notice"

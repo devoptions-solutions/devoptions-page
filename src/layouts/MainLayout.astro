@@ -18,3 +18,136 @@ const { title = "DevOptions", ...props } = Astro.props;
     <slot />
   </body>
 </html>
+
+<style is:global>
+  /* ── Scroll reveal: elemento individual ─────────────────────── */
+  [data-reveal]:not([data-reveal="stagger"]) {
+    transition:
+      opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  [data-reveal]:not([data-reveal="stagger"]):not(.is-revealed) {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+
+  /* Stagger: la transición se define en CSS; el estado inicial y los
+     delays se manejan por JS para garantizar que todos los hijos animen */
+  [data-reveal="stagger"] > * {
+    transition:
+      opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-reveal]:not([data-reveal="stagger"]):not(.is-revealed) {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    [data-reveal]:not([data-reveal="stagger"]),
+    [data-reveal="stagger"] > * {
+      transition: none !important;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    const prefersReduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    /* ── Stagger: esconder hijos via JS (más fiable que CSS solo) ── */
+    if (!prefersReduced) {
+      document
+        .querySelectorAll<HTMLElement>('[data-reveal="stagger"]')
+        .forEach((container) => {
+          const rect = container.getBoundingClientRect();
+          // Solo aplica si está debajo del fold
+          if (rect.top > window.innerHeight) {
+            Array.from(container.children).forEach((child) => {
+              if (child instanceof HTMLElement) {
+                child.style.transition = "none";
+                child.style.opacity = "0";
+                child.style.transform = "translateY(1.25rem)";
+              }
+            });
+          } else {
+            // Ya visible: marcar como revelado sin animación
+            container.classList.add("is-revealed");
+          }
+        });
+    }
+
+    /* ── Scroll reveal ─────────────────────────────── */
+    const revealEls = document.querySelectorAll("[data-reveal]");
+
+    if (revealEls.length > 0) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            observer.unobserve(el);
+
+            if (el instanceof HTMLElement && el.dataset.reveal === "stagger") {
+              // rAF garantiza que el navegador pintó el estado inicial (opacity 0)
+              // antes de que empiece la transición de cada hijo
+              requestAnimationFrame(() => {
+                Array.from(el.children).forEach((child, i) => {
+                  if (!(child instanceof HTMLElement)) return;
+                  setTimeout(() => {
+                    child.style.transition = ""; // CSS toma el control
+                    child.style.opacity = "";
+                    child.style.transform = "";
+                  }, i * 90);
+                });
+              });
+            }
+
+            el.classList.add("is-revealed");
+          });
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -60px 0px" },
+      );
+
+      revealEls.forEach((el) => observer.observe(el));
+    }
+
+    /* ── Parallax orbs ─────────────────────────────── */
+    if (prefersReduced) return;
+
+    const parallaxEls = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-parallax]"),
+    );
+    if (parallaxEls.length === 0) return;
+
+    parallaxEls.forEach((el) => (el.style.willChange = "transform"));
+
+    let rafId: number | null = null;
+
+    function tick() {
+      const scrollY = window.scrollY;
+      parallaxEls.forEach((el) => {
+        const speed = parseFloat(el.dataset.parallax ?? "0");
+        const section = el.closest("section");
+        if (section) {
+          const rect = section.getBoundingClientRect();
+          if (rect.bottom < -200 || rect.top > window.innerHeight + 200) return;
+        }
+        el.style.transform = `translate3d(0, ${scrollY * speed}px, 0)`;
+      });
+      rafId = null;
+    }
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!rafId) rafId = requestAnimationFrame(tick);
+      },
+      { passive: true },
+    );
+
+    tick();
+  })();
+</script>
