@@ -161,6 +161,7 @@ const cardAccents = [
     text-decoration: none;
     color: inherit;
     transition:
+      opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
       border-color 0.25s ease,
       box-shadow 0.25s ease,
       transform 0.25s ease;
@@ -187,6 +188,11 @@ const cardAccents = [
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
+    transition:
+      opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 0.25s ease,
+      box-shadow 0.25s ease,
+      transform 0.25s ease;
   }
 
   .svc-card:hover .svc-card-img {
