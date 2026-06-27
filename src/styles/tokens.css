@@ -1,45 +1,44 @@
 /**
  * DevOptions Design Tokens
  * Sincronizado con Penpot — set "DevOptions"
- * Paleta oficial: OP 7 Cobalt UI Elegance
+ * Paleta oficial: OP 10 Cobalt Clean
  * Regla 60-30-10:
- *   60% Blanco (#ffffff) — neutro dominante (fondos/superficies)
- *   30% Cobalto (#0047ab) — color de marca/primario
- *   10% Tomate (#ff6347) — acento
- *   Apoyo: azul claro #add8e6
- *   Oscuro/neutros derivados del cobalto (azul marino), sin slate
+ *   60% Blanco (#ffffff) / White smoke (#f5f5f5) — neutro dominante
+ *   30% Cobalto (#0d47a1) — color de marca/primario
+ *   10% Verde (#1c9937) — acento
+ *   Apoyo: slate gray #607d8b (texto/neutros)
  * @see paleta-colores.txt
  */
 @theme {
-  /* Paleta oficial (cobalto → azul claro + acento tomate) */
-  --color-brand-1: #0047ab; /* cobalto (base) */
-  --color-brand-2: #3a6fc4; /* cobalto claro */
-  --color-brand-3: #add8e6; /* azul claro */
-  --color-brand-4: #ff6347; /* tomate (acento) */
+  /* Paleta oficial (cobalto → dodger blue + neutros slate) */
+  --color-brand-1: #0d47a1; /* cobalto (base) */
+  --color-brand-2: #1976d2; /* azul medio */
+  --color-brand-3: #64b5f6; /* azul claro */
+  --color-brand-4: #1c9937; /* verde (acento) */
   --color-brand-5: #ffffff; /* blanco (neutro) */
 
   /* Semánticos */
-  --color-primary: #0047ab; /* 30% — cobalto */
-  --color-primary-hover: #003a8c;
-  --color-secondary: #2f6fd0;
-  --color-accent: #ff6347; /* 10% — tomate */
-  --color-accent-hover: #e84e34;
-  --color-accent-light: #ffa593;
+  --color-primary: #0d47a1; /* 30% — cobalto */
+  --color-primary-hover: #093779;
+  --color-secondary: #1976d2;
+  --color-accent: #1c9937; /* 10% — verde */
+  --color-accent-hover: #167a2c;
+  --color-accent-light: #6cca7f;
   --color-background: #ffffff; /* 60% — blanco */
-  --color-surface: #eef3f9; /* 60% — superficie azul muy clara */
-  --color-border: #d6e0ec;
-  --color-text-primary: #0f2240;
-  --color-text-secondary: #4a5b73;
+  --color-surface: #f5f5f5; /* 60% — white smoke */
+  --color-border: #e2e6e9;
+  --color-text-primary: #263238; /* blue grey oscuro */
+  --color-text-secondary: #546e7a;
   --color-success: #10b981;
   --color-warning: #f59e0b;
   --color-error: #ef4444;
 
-  /* Neutros (azul marino derivados del cobalto) */
-  --color-neutral-100: #eef3f9;
-  --color-neutral-300: #c4cfdd;
-  --color-neutral-500: #5b6b85;
-  --color-neutral-700: #243650;
-  --color-neutral-900: #0f2240;
+  /* Neutros (slate/blue grey) */
+  --color-neutral-100: #f5f5f5;
+  --color-neutral-300: #cfd8dc;
+  --color-neutral-500: #607d8b;
+  --color-neutral-700: #37474f;
+  --color-neutral-900: #263238;
 
   /* Espaciado */
   --spacing-1: 0.25rem;
